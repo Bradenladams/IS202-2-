@@ -6,30 +6,139 @@ December 3, 2025
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Braden Adams Scratch Page</title>
-    <link rel="stylesheet" href="css/Layout.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Braden Adams Scratch Page</title>
+<style>
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #a5afb0;
+    margin: 0;
+}
+
+/* Header */
+.common.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #a5afb0; /* Match page background */
+    border-bottom: 1px solid #555555;
+    height: 150px;
+    position: relative; /* Header does not move on scroll */
+    z-index: 1000;
+}
+
+.common.header .header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.common.header .header-left img {
+    width: 150px;
+    height: auto;
+}
+
+.common.header .header-left h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+/* Navigation links */
+.common.header .subheader {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start; /* top-right */
+}
+
+.common.header .subheader a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Left and right menus */
+.leftmenu {
+    position: fixed;
+    top: 160px;
+    left: 5px;
+    width: 100px;
+    bottom: 39px;
+    z-index: 1;
+    padding-top: 20px;
+    border-right: solid 1px #555555;
+}
+
+.rightmenu {
+    position: fixed;
+    top: 160px;
+    right: 5px;
+    width: 100px;
+    bottom: 39px;
+    border-left: solid 1px #555555;
+    padding-left: 5px;
+}
+
+/* Main content */
+.mainbody {
+    margin-left: 114px;
+    margin-right: 114px;
+    padding-right: 5px;
+}
+
+/* Footer */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background-color: #ffffff;
+    border-top: 1px solid #555555;
+    text-align: center;
+    line-height: 40px;
+    font-size: 12px;
+    z-index: 1000;
+}
+
+/* Optional: remove default margins from h1 and paragraphs */
+h1, p {
+    margin: 0;
+}
+</style>
 </head>
 <body>
-    <div class="common header" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px;">
-    <div style="display: flex; align-items: center; gap: 15px;">
-        <img src="assets/img/Resume photo.JPG" alt="Description" style="width: 150px; height: auto;">
-        <h1 style="margin: 0; font-size: 28px;">Braden Adams</h1>
+    <!-- Header -->
+    <div class="common header">
+        <div class="header-left">
+            <img src="assets/img/Resume photo.JPG" alt="Description">
+            <h1>Braden Adams</h1>
+        </div>
+        <div class="subheader">
+            <a href="index.html">Home</a>
+            <a href="Snake.html">Snake Game</a>
+        </div>
     </div>
 
-    <!-- Right: Navigation -->
-    <div class="subheader" style="display: flex; gap: 20px;">
-        <a href="index.html" style="text-decoration: none; color: inherit;">Home</a> 
-        <a href="Snake.html" style="text-decoration: none; color: inherit;">Snake Game</a>
-    </div>
+    <!-- Left menu -->
     <div class="common leftmenu">
         <a href="#Edu">Education</a><br>
         <a href="#Exp">Experience</a><br>
         <a href="#Skl">Skills</a><br>
     </div>
+
+    <!-- Right menu -->
+    <div class="common rightmenu"> 
+        <h4>Braden Adams</h4>
+        Business Student <br>
+        Brigham Young University <br>
+        Provo, Utah, 64606 
+        <p>See my <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">wikipedia page</a>.</p>
+    </div>
+
+    <!-- Main content -->
     <div class="common mainbody">
-        <p class="justify"> <span style="font-weight: bold;">Mission Statement: </span> Focused on building a foundation in business operations by contributing strong communication, organization, and problem-solving abilities.</p>
+        <p><strong>Mission Statement:</strong> Focused on building a foundation in business operations by contributing strong communication, organization, and problem-solving abilities.</p>
         <ol>
             <li class="headings" id="Edu">Education
                 <ul>
@@ -50,55 +159,29 @@ December 3, 2025
                     <li>Structured query language</li>
                     <li>Tableau</li>
                     <li>Excel solver, pivot tables, and charts</li>
-                    <li>Html, CSS, Bootstrap</li>
+                    <li>HTML, CSS, Bootstrap</li>
                     <li>Flowchart Diagramming</li>
-                    <li>Visual basic for applications (VBA) programming in Excel</li>
+                    <li>Visual Basic for Applications (VBA) programming in Excel</li>
                 </ul>
-                <p>&nbsp;</p>
-                <p>&nbsp;</p>
-                <p>&nbsp;</p>
-                <p>&nbsp;</p>
-                    <iframe
-                    width="560"
-                    height="315"
-                    src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-                    </iframe>
-                <p>&nbsp;</p>
-                <p>&nbsp;</p>
-                <p>&nbsp;</p>
-                <p>&nbsp;</p>
-                <p>&nbsp;</p>
-                <!-- Interactive Tableau Public Visualization -->
-                    <div style="width: 100%; max-width: 900px; margin: 20px auto; position: relative; padding-top: 56.25%;">
-                    <iframe
-                        src="https://public.tableau.com/views/Regional_16766597857820/GlobalTemperatures?:showVizHome=no&:embed=y"
-                        width="100%"
-                        height="600"
-                        style="border: none; position: absolute; top: 0; left: 0;"
-                        allowfullscreen>
-                    </iframe>
-                    </div>
-                <p>&nbsp;</p>
-                <p>&nbsp;</p>
-                <p>&nbsp;</p>
-                <p>&nbsp;</p>
-                <p>&nbsp;</p>
-                <a href="#Top">Return to top</a></div>
-                <p>&nbsp;</p>
-                <p>&nbsp;</p>
             </li>
         </ol>
+
+        <!-- Embedded YouTube video -->
+        <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" 
+            referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        </iframe>
+
+        <!-- Interactive Tableau Public Visualization -->
+        <div style="width: 100%; max-width: 900px; margin: 20px auto; position: relative; padding-top: 56.25%;">
+            <iframe src="https://public.tableau.com/views/Regional_16766597857820/GlobalTemperatures?:showVizHome=no&:embed=y" 
+                width="100%" height="600" style="border: none; position: absolute; top: 0; left: 0;" allowfullscreen>
+            </iframe>
+        </div>
     </div>
-    <div class="common rightmenu"> 
-        <h4>Braden Adams</h4>
-        Business Student <br>
-        Brigham Young University <br>
-        Provo, Utah, 64606 
-        <p> See my  <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" title="Braden Adams Wiki Page">wikipedia page</a>.
-    </p></div>
-    <div class="common footer">www.bradenadams.com | &copy; | Braden Adams | <a href="#Top">Return to top</a></div>
+
+    <!-- Footer -->
+    <div class="common footer">
+        www.bradenadams.com | &copy; | Braden Adams | <a href="#Top">Return to top</a>
+    </div>
 </body>
 </html>
