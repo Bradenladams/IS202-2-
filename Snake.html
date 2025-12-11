@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snake Game</title>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #013220; /* Dark green background */
+        font-family: Arial, sans-serif;
+        color: #fff;
+        flex-direction: column;
+    }
+    canvas {
+        background-color: #024d27; /* Slightly lighter green canvas */
+        display: block;
+        margin-bottom: 20px;
+        border: 4px solid #0f0; /* Light green border */
+    }
+    h1 {
+        margin-bottom: 10px;
+        font-size: 36px;
+    }
+    p {
+        margin: 5px 0;
+        font-size: 18px;
+    }
+    button {
+        padding: 12px 24px;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #0f0;
+        color: #013220;
+        margin-top: 10px;
+    }
+    button:hover {
+        background-color: #0c0;
+    }
+</style>
+</head>
+<body>
+<h1>Snake Game</h1>
+<canvas id="gameCanvas" width="600" height="600"></canvas>
+<p>Use arrow keys to move. Eat the red food and avoid hitting walls or yourself!</p>
+<p id="score">Score: 0</p>
+<button id="restartButton">Restart Game</button>
+
+<script>
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+const restartButton = document.getElementById('restartButton');
+
+const gridSize = 30; // Bigger tiles
+const tileCount = canvas.width / gridSize;
+
+let snake, velocity, food, score, gameOver;
+
+function initGame() {
+    snake = [{x: 10, y: 10}];
+    velocity = {x: 0, y: 0};
+    food = {x: Math.floor(Math.random() * tileCount), y: Math.floor(Math.random() * tileCount)};
+    score = 0;
+    gameOver = false;
+    document.getElementById('score').innerText = "Score: " + score;
+}
+
+function drawGrid() {
+    ctx.strokeStyle = "#035632"; // Darker green gridlines
+    ctx.lineWidth = 1;
+    for (let x = 0; x <= canvas.width; x += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, canvas.height);
+        ctx.stroke();
+    }
+    for (let y = 0; y <= canvas.height; y += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(canvas.width, y);
+        ctx.stroke();
+    }
+}
+
+function draw() {
+    if (gameOver) {
+        ctx.fillStyle = "white";
+        ctx.font = "40px Arial";
+        ctx.fillText("Game Over!", canvas.width / 2 - 120, canvas.height / 2);
+        return;
+    }
+
+    // Clear canvas
+    ctx.fillStyle = "#024d27";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Draw grid
+    drawGrid();
+
+    // Draw food
+    ctx.fillStyle = "red";
+    ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize, gridSize);
+
+    // Move snake only if velocity is non-zero
+    if (velocity.x !== 0 || velocity.y !== 0) {
+        const head = {x: snake[0].x + velocity.x, y: snake[0].y + velocity.y};
+
+        // Check collisions
+        if (
+            head.x < 0 || head.x >= tileCount ||
+            head.y < 0 || head.y >= tileCount ||
+            snake.some(segment => segment.x === head.x && segment.y === head.y)
+        ) {
+            gameOver = true;
+            return;
+        }
+
+        snake.unshift(head);
+
+        // Eat food
+        if (head.x === food.x && head.y === food.y) {
+            score++;
+            document.getElementById('score').innerText = "Score: " + score;
+            food = {x: Math.floor(Math.random() * tileCount), y: Math.floor(Math.random() * tileCount)};
+        } else {
+            snake.pop();
+        }
+    }
+
+    // Draw snake
+    ctx.fillStyle = "blue";
+    snake.forEach(segment => ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize, gridSize));
+}
+
+function gameLoop() {
+    draw();
+}
+
+document.addEventListener('keydown', e => {
+    switch(e.key) {
+        case "ArrowUp":
+            if (velocity.y === 0) velocity = {x: 0, y: -1};
+            break;
+        case "ArrowDown":
+            if (velocity.y === 0) velocity = {x: 0, y: 1};
+            break;
+        case "ArrowLeft":
+            if (velocity.x === 0) velocity = {x: -1, y: 0};
+            break;
+        case "ArrowRight":
+            if (velocity.x === 0) velocity = {x: 1, y: 0};
+            break;
+    }
+});
+
+restartButton.addEventListener('click', () => {
+    initGame();
+});
+
+initGame();
+setInterval(gameLoop, 100);
+</script>
+<a href="Scratch.html">Back to scratch page</a>
+</body>
+</html>
